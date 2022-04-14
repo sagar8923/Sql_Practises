@@ -11,7 +11,7 @@ import smtplib
  
 engine = pyttsx3.init('sapi5')
 voices= engine.getProperty('voices') #getting details of current voice
-engine.setProperty('voice', voices[1].id)
+engine.setProperty('voice', voices[0].id)
 
 
 def speak(audio):
@@ -27,7 +27,7 @@ def wishme():
         speak("Good Afternoon!")
     else :
         speak("Good Evening!")
-    speak("I am Alexa. what can i do for you?")
+    speak("I am jarvis. what can i do for you?")
 
 def takecommand() :
     #it takes microphone input from the user and returns string output
