@@ -1,0 +1,221 @@
+create table EmployeeInfo(
+EmpID int,
+EmpFname varchar(20),
+EmpLname varchar(20),
+Department varchar(20),
+Project char(5),
+eadd varchar(50),
+DOB date,
+Gender char)
+
+insert into EmployeeInfo values(1,
+Sanjay,
+Mehra,
+HR,
+P1,
+Hyderabad(HYD),
+01/12/1976,
+M)
+
+insert into EmployeeInfo values(2,
+'Ananya',
+'Mishra',
+'Admin',
+'P2',
+'Delhi(DEL)',
+'02/05/1968',
+'F')
+
+insert into EmployeeInfo values(3,
+'Rohan',
+'Diwan',
+'Account',
+'P3',
+'Mumbai(BOM)',
+'01/01/1980',
+'M')
+
+insert into EmployeeInfo values(4,
+'Sonia',
+'Kulkarni',
+'HR',
+'P1',
+'Hyderabad(HYD)',
+'02/05/1992',
+'F')
+
+
+insert into EmployeeInfo values(5,
+'Ankit',
+'Kapoor',
+'Admin',
+'P2',
+'Delhi(DEL)',
+'03/07/1994',
+'M')
+
+create table EmployeePosition(EmpID int,
+EmpPosition varchar(20),
+DateOfJoining date,
+Salary int)
+
+insert into EmployeePosition values(1,
+'Manager',
+'01/05/2022',
+500000)
+
+insert into EmployeePosition values(2,
+'Executive',
+'02/05/2022',
+75000)
+
+insert into EmployeePosition values(5,
+'Manager',
+'06/12/2022',
+700000)
+
+insert into EmployeePosition values(4,
+'Lead',
+'02/05/2022',
+85000)
+
+update EmployeePosition set EmpID =1 where Depatment='Lead'
+update EmployeePosition set EmpID=2  where Department = ''Executive'
+update EmployeeInfo set eadd='Hyderabad(HYD)' where eadd= 'Hyderabad'
+
+JOINS- 
+1. CROSS JOIN
+
+SELCT EMPID, EMPPOSITION, EMPFNAME, EMPLNAME, DATEOFJOINING FROM EMPLOYEEINFO, EMPLOYEEPOSITION
+
+
+2.EQUI/INNER JOIN
+
+SELECT EMPFNAME, EMPLNAME, EMPPOSITION, SALARY FROM EMPLOYEEINFO A INNER JOIN EMPLOYEEPOSITION B ON A.EMPID=B.EMPID 
+
+SELECT EMPFNAME, EMPLNAME, EMPPOSITION. SALARY FROM EMPLOYEEINFO A INNER JOIN EMPLOYEEPOSITION B ON A.EMPID=B.EMPID
+
+
+3. LEFT OUTER JOIN
+
+SELECT A.EMPID, B.EMPID FROM EMPLOYEEINFO A LEFT OUTER JOIN EMPLOYEEPOSITION B ON A.EMPID=B.EMPID
+
+4. RIGHT OUTER JOIN 
+
+SELECT A.EMPID, B.EMPID FROM EMPLOYEEINFO A RIGHT OUTER JOIN EMPLOYEEPOSITION B ON A.EMPID=B.EMPID
+
+
+5. FULL OUTER JOIN 
+SELECT A.EMPID, B.EMPID FROM EMPLOYEEINFO A FULL OUTER JOIN EMPLOYEEPOSITION B ON A.EMPID=B.EMPID
+
+6. SELF JOIN 
+
+SELECT A.EMPID, A.EMPFNAME, A.EMPLNAME, A.DEPARTMENT, A.PROJECT, A.EADD, A.GENDER FROM EMPLOYEEINFO A , 
+AEMP B ON A.EMPID>B.EMPID AND B.EMPFNAME='ROHAN'
+
+SELECT A.EMPID, A.EMPPOSITION, A.SALARY, A.DATEOFJOINING FROM EMPLOYEEPOSITION A , MYEMP B ON A.SLARY>B.SALARY AND B.DATEOFJOINING='2022-01-05'
+
+
+SUBQUERY----
+
+SELECT * FROM EMPLOYEEPOSITION WHERE SALARY>(SELECT SALARY FROM EMPLOYEEPOSITION WHERE EMPID=1)
+
+
+some pther operator
+----------------------------------------
+alter table myemp add client varchar(30)
+alter table myemp drop column client
+
+insert into myemp(empid) values(11)
+insert into myemp(empid) values(12)
+insert into myemp(empid) values(13)
+insert into myemp(empid) values(14)
+
+select * from myemp union select * from EmployeePosition
+select * from myemp intersect select * from EmployeePosition 
+select * from myemp union all select * from employeeposition
+
+----------------------------------------------------------------------------------
+CONSTRAINTS -1.NOT NULL
+create table emp(eno int not null, ename char(20))
+insert into emp(eno) values(null)
+
+alter table emp alter column eno int null
+--------------------------------------------------------------------
+2. UNIQUE CONSTRAINT
+
+drop table emp
+create table emp(eno int unique, ename varchar(20), esal int)
+
+
+sp_help emp
+
+insert into emp(eno) values(1)
+insert into emp(eno) values(1)
+
+alter table emp drop constraint UQ__emp__D9507B86A7F6AA51
+
+alter table emp add constraint uq_emp_ename unique(ename)
+
+alter table emp drop constraint uq_emp_ename
+
+create table emp (eno int,
+ename varchar(20)
+constaint uq_emp_eno unique(eno))
+
+----------------------------------------------------------
+
+create table emp(eno int primary key, ename varchar(20)) 
+
+
+
+
+
+
+alter table emp add contraint pk_emp_eno primary key(eno)
+
+
+
+
+///Write q query to find all the employees whose salary is between 50000 to 100000
+select * from EmployeeInfo where Salary>=50000 and Salary<=100000
+select * from EmployeePosition where Salary between 50000 and 100000
+
+///Write a query to create a new table that consists of data and structure copied from the other table.
+select * Aemp from EmployeeInfo
+
+///Write a query to find the names of employees that begin with ‘S’
+select * from EmployeeInfo where EmpFname like 's%'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
